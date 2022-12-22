@@ -8,3 +8,9 @@ Besides the grammars, we also had to develop semantic analysis, so that semantic
 
 In the directory `projeto/exemplos` we can find some examples in this language.
 In the directory `projeto/exemplos_base_de_dados` we can find some examples of questions defined in the second language we mentioned above.
+
+### Note
+I'm currently writting an improved version of this README. It's still under development, but you can check its current state on the [`dev/documentation` branch](https://github.com/immarianaas/c-quiz-language/tree/dev/documentation).
+
+
+
