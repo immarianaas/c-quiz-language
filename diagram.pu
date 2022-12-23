@@ -1,0 +1,113 @@
+@startuml Compilers project
+
+abstract class Questao {
+    + Pergunta pergunta
+    + Tema tema
+    + Dificuldade dificuldade
+    + Real pontuacao
+    + Lista< Resposta > respostas
+    + Inteiro tempomaximo
+    + String tipo
+    + Repsosta reespostadada
+}
+
+class "Questao:EscolhaMultipla" {
+}
+
+class "Questao:VerdadeiroFalso" {
+}
+
+class "Questao:CurtaTextual" {
+}
+
+class "Questao:LongaTextual" {
+    - Lista< Resposta > respostas nao tem!!
+    -  Real pontuacao nao tem!!
+}
+
+Questao <|-- "Questao:EscolhaMultipla"
+Questao <|-- "Questao:VerdadeiroFalso"
+Questao <|-- "Questao:CurtaTextual"
+Questao <|-- "Questao:LongaTextual"
+
+
+abstract class Resposta {
+    + Real pontuacao
+}
+
+class "Resposta:EscolhaMultipla" { }
+
+class "Resposta:VerdadeiroFalso" { }
+
+class "Resposta:CurtaTextual" { }
+
+class "Resposta:LongaTextual" { }
+
+Resposta <|-- "Resposta:EscolhaMultipla"
+Resposta <|-- "Resposta:VerdadeiroFalso"
+Resposta <|-- "Resposta:CurtaTextual"
+Resposta <|-- "Resposta:LongaTextual"
+
+class Questionario {
+    + Lista< Questao > questoes
+    + Inteiro duracao 
+    + Inteiro tempomaximo 
+    + Real pontuacao 
+
+    + adicionarquestao( Questão )
+    + importar( String )
+}
+
+class Grupo {
+    + Tema tema
+    + String tipo
+    + Dificuldade dificuldade
+    + Inteiro minperguntasaresponder
+    + Inteiro nrperguntasaapresentar
+
+    + adicionarquestoes( Questionario )
+}
+
+class "Lista< T >" {
+    + void baralhar()
+}
+
+'''class outros {
+'''    + apresentarMenu( Questionario )
+'''    + apresentarMenu( Questionario, Inteiro )
+'''    + apresentar( String )
+'''    + guardarrespostas( Questionario, String )
+'''    + str ( Inteiro )
+'''    + str ( Real )
+'''    + str ( Booleano )
+'''
+'''}
+
+' -->>> se calhar nao faz sentido adicionar aqui'
+ class Tema { }
+ enum Dificuldade { 
+    FACIL
+    MEDIO
+    DIFICIL
+ }
+
+ '''class String { }
+ '''class Real { }
+ '''class Inteiro { }
+ '''class Boolean { }
+
+
+Questao o-- Tema
+Questao o-- Dificuldade
+
+Grupo o-- Tema
+Grupo o-- Dificuldade 
+
+Questionario o-- "Lista< T >"
+
+Questionario <|-- Grupo
+Questionario o-- Questao
+Questao o-- Resposta
+
+
+@enduml

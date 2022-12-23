@@ -137,6 +137,86 @@ The answers have the following information:
 ### Quiz language
 This is the main language of the project, looking more like a general programming language. It is responsible for the creation of the quizz itself. It can be used alone or with the previous language. 
 
+---
+
+#### Types
+The following class diagram schemes the types supported by the language. Note that this diagram doesn't represent with complete accuracy the structure, since the types aren't classes _per se_.
+
+![Diagram](./diagram.svg)
+
+##### Questionário
+`Questionário` is the type of data that defines some properties about the quiz the user wants to create. It has information about the questions that are going to be considered for the quiz, as well as other customization options, such as the `tempomaximo` -- which alows the user to define a time limit for the quiz, after which the answers won't be stored nor considered for the scoring.
+
+After the quiz is complete, the variable `duracao` will store how long it took to complete, while `pontuacao` will contain the scoring of the quiz.
+
+It has 2 functios associated with it:
+- adicionarquestao, which accepts as argument a `Questao`, and is used to add a question to it
+- importar, which is accepts a String with a path to a file written with the previous language. The questions will then be imported to this quiz
+
+<span style="color:red"> pois. adiciona ou substitui? </span>
+
+##### Grupo
+This type is derived from the `Questionario`, supporting all of its functionalities, but going a bit further.
+This group of questions can be characterized by a topic (`tema`), type and difficulty. This is saved when the function `adicionarquestoes` is used. It can be used with these 3 attributes, using the following revolutionary syntax:
+```
+g2 % adicionarquestoes(q1, tema = [Tema_C], dificuldade = FACIL, tipo = "VerdadeiroFalso").
+```
+Furthermore, the programmer can also define the minimum  number of questions that the user must complete before submitting the quiz, `minperguntasaresponder`, and also the number of questions to present in the quiz `nrperguntasaapresentar`.
+
+
+##### Questao
+This type defines a question. `pergunta` stores the text of the question, while `tema` defines the topic, `dificuldade` the difficulty, `pontuacao` its points, `respostas` is a list of possible answers, useful for all the answer types except the `LongaTextual`. Furthermore, there's `tempomaximo`, storing the maxmimum time the user has to answer this question. To finish, there's also a String to present the type of Question, so that the programmer can filter.
+
+Furthermore, after a quiz is complete, the `respostadada` attribute will have information on the answer that the user chose for that question.
+
+##### TODO: cobrir os diferentes tipos de Questao
+
+##### Resposta
+This type is used to store a possible answer to a question.
+It has information on how much it values, if the user were to use it.
+
+TODO: separar isto por cada tipo especifico, e vermelhor os argumentos
+We can also define Resposta objects using this AMAZING sintaxe:
+```
+aaa as Resposta:EscolhaMultipla.
+aaa := "Não tenho fome.", 60. 
+
+bbb as Resposta:VerdadeiroFalso.
+bbb := "Não tenho fome.", false, 60, -30.
+```
+
+
+##### TODO: falar dos outros tipos de Resposta
+
+##### Lista
+`Lista` is an array-like type that permits the aggregation of multiple objects. It has the method `baralhar`, useful to mix the order of the questions in the quiz, for example:
+```
+quiz->questoes->baralhar(). # mix the questions in the quiz
+```
+It allows the initialization with the use of brackets, and allows for objects to be initialized at the same time, for example:
+```
+lr1 as Lista<Resposta:EscolhaMultipla>.
+lr1 := { "Não tenho fome.", 60 ; "Estou cansada.", -20}. 
+
+
+lr2 as Lista<Resposta:VerdadeiroFalso>.
+lr2 := { "Não tenho fome.", false, 60, -30 ; "Estou cansada.", true, 40, -20}.
+```
+
+##### Tema
+This type is used to define the topic of the question or question group, filtering the questions that are included in it. It can be used in an hierarchical fashion. It's sintax is very intuitive:
+```
+q->tema := [TECH->PROGRAMMING->PYTHON]
+```
+This way, when creating a Grupo, we can say that we only want questions with tema \[TECH->PROGRAMMING], and in this case, our example would fit the criteria.
+
+##### Dificuldade
+To finish, there's this type, used to store the difficulty level of the question, and has 3 possible values: `FACIL`, `MEDIO` and `DIFICIL`. It can also be used to filter questions, just like Tema.
+
+---
+
+
+
 This language supports multiple functionalities commonly present in general-purpose programming languages, such as (but not exclusive to):
 - #### variable declaration and initialization
 This language allows for the declaration of quizzes (Questionario?), questions (Pergunta?), lists (Lista?), topics (Temas), difficulty levels (Dificuldade) and answers (Resposta), besides other symple types such as boolean, strings, integers and double.
@@ -195,26 +275,6 @@ It also has some native methods, useful for the use-case. These are:
   em1->respostas%baralhar().
   ```
 
-- #### adicionarquestao (add question)
-  This method allows the user to add a question previously defined to a quiz.
-  ```
-  q1%adicionarquestao(em1).
-  q1%adicionarquestao(vf1).
-  ```
-
-- #### adicionarquestoes (add questions)
-  Add questions to a group. Here it is possible to filter the various questions by the topic (hierarchically), difficulty and type.
-  <span style="color:red">show example!!</span>
- ```
- g2 as Group.
- g2%adicionarquestoes(q1).
- ```
-
-- #### importar (import)
-  Allows the user to import questions from a file. The argument is the origin file. It is applicable only to Grupo or Questionario objects.
-  ```
-  q1%importar("Geografia.txt").
-  ```
 
 - #### apresentarMenu (present menu)
   Used to present the menu correspondent to a group of questions - can be either a Grupo or Questionario. Can also have an input for the number of seconds it will be possible to answer all questions presented. After this number has passed, no answer will be saved.
@@ -236,29 +296,15 @@ It also has some native methods, useful for the use-case. These are:
   apresentar(“Pontos” & str(g1->pontuação)).
   ```
 
-
-## Types
-In the type Questao there is the following attributes:
-- pergunta (String)
-- tema (Tema)
-- difficuldade (Dificiludade)
-- pontuacao (Real?)
-- Lista\<Resposta>
-- tempomaximo (Inteiro)
-- respostadada (which will be set once the questionare is run)
-- respEscolhida ( which will be set once the questionare is run) <span style="color:red">for multiple-choice, acho eu?</span>
-
-In the type Repsosta there is the following attributes:
-- resposta (String)
--	respostaDada (String)
-- pontuaca (Real)
-
-Both Resposta and Question can't be initialized. Users can only initialize specific types of Question, using the following sintaxe: `Questao:EscolhaMultipla`, which works in a similar fashion to inheritance mechanism.
-
+<div style="red">
 Specific types of Resposta have different attributes, such as the True/False ones:
 - pontuacao
 - desconto
 - correcao
+
+TODO: check
+</div>
+
 
 The quotation is as follows:
 ```
@@ -269,20 +315,6 @@ pontuacao += pontuacao questao * cotacao da resposta /100;
 
 Se o tempo max individual da pergunta passar, então essa pergunta não é guardada, mas o resto do questionario continua
 
-Grupo extends Questionario.
-Atributos de Grupo:
-- minperguntasaresponder (Inteiro)
-- nrperguntasaapresentar (Inteiro)
-
-
-Atributos de Questionario (e subsequentemente de Grupo):
-- duracao (Inteiro) // tempo demorado a responder
-- tempomaximo (Inteiro)
-
-- questoesNaoRespondidas (Lista<Questao>);
- - <span style="color:red">public HashMap<Questao, Resposta> questoesRespondidas = new HashMap<Questao, Resposta>();</span>
-	
-- pontuacao (Real)
 
 
 <!--
@@ -310,17 +342,6 @@ A compilação deve gerar um programa q qdo executado realiza o teste iterativam
 <h2 id="whats_to_improve">What's to improve</h2>
 A lot.
 
-<!--
-Even though the goals for this project were achieved and even exceeded, there are quite a lot of things that could be improved. 
-
-To start, the code can sometimes be confusing and not intuitive, with some blocks unecessarily replicated. The documentation could also be improved, not to mention the mix of Portuguese and English when naming variables.
-
-Even though this is a bit outside the scope of the project, there are some clear improvements to the protocol that should be considered. For example, it should be possible for `publishers` to publish in many topics, selecting which one(s) in every publish message. The `consumer` should also be able to leave a specific topic, instead of being forced to unsubscribe of all of them. 
-
-The current code to simulate the `consumers` and `producers` is quite limited, as we weren't supposed to edit these files for submittion. These processes should be improved in order to accomodate for all the functionalities of the message broker. Furthermore, some properties, such as the server port, could be defined with command-line arguments.
-
-It would also be interesting to introduce unit and integration tests to the project.
--->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
