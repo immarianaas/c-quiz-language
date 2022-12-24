@@ -8,7 +8,7 @@ abstract class Questao {
     + Lista< Resposta > respostas
     + Inteiro tempomaximo
     + String tipo
-    + Repsosta reespostadada
+    + Repsosta respostadada
 }
 
 class "Questao:EscolhaMultipla" {
@@ -21,8 +21,8 @@ class "Questao:CurtaTextual" {
 }
 
 class "Questao:LongaTextual" {
-    - Lista< Resposta > respostas nao tem!!
-    -  Real pontuacao nao tem!!
+'''*    - Lista< Resposta > respostas nao tem!!
+'''*    -  Real pontuacao nao tem!!
 }
 
 Questao <|-- "Questao:EscolhaMultipla"
@@ -35,13 +35,23 @@ abstract class Resposta {
     + Real pontuacao
 }
 
-class "Resposta:EscolhaMultipla" { }
+class "Resposta:EscolhaMultipla" { 
+    + String resposta
+}
 
-class "Resposta:VerdadeiroFalso" { }
+class "Resposta:VerdadeiroFalso" { 
+    + String resposta
+    - Boolean correcao
+    - Real desconto
+}
 
-class "Resposta:CurtaTextual" { }
+class "Resposta:CurtaTextual" { 
+    - String resposta
+}
 
-class "Resposta:LongaTextual" { }
+class "Resposta:LongaTextual" { 
+    - String userinput
+}
 
 Resposta <|-- "Resposta:EscolhaMultipla"
 Resposta <|-- "Resposta:VerdadeiroFalso"
