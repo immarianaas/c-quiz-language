@@ -140,7 +140,7 @@ The answers have the following information:
 - points (optional) 
 
 ### Quiz language
-This is the main language of the project, looking more like a general programming language. It is responsible for the creation of the quizz itself. It can be used alone or with the previous language. 
+This is the main language of the project, which is more similar to a general programming language. It is responsible for the definition, creation and presentation of the quizz itself. It can be used alone or with a secondary***** language. 
 
 ---
 
@@ -149,41 +149,47 @@ The following class diagram schemes the types supported by the language. Note th
 
 ![Diagram](./diagram.svg)
 
-##### Questionário
-`Questionário` is the type of data that defines some properties about the quiz the user wants to create. It has information about the questions that are going to be considered for the quiz, as well as other customization options, such as the `tempomaximo` -- which alows the user to define a time limit for the quiz, after which the answers won't be stored nor considered for the scoring.
 
-After the quiz is complete, the variable `duracao` will store how long it took to complete, while `pontuacao` will contain the scoring of the quiz.
+##### Quizz: `Questionario` 
+
+`Questionario` *(quizz)* is the type of data that contains the properties of the quiz the user wants to create. These includes the questions that are going to be considered, as well as other customization options, such as the `tempomaximo` *(maximum time)* - which defines a maximum time to complete the quizz, after which the answers won't be stored nor considered for the scoring.
+
+After the quiz is complete, the variable `duracao` *(duration)* will store how long it took to complete, while `pontuacao` *(score)* will contain the scoring of the quiz.
 
 It has 2 functios associated with it:
-- adicionarquestao, which accepts as argument a `Questao`, and is used to add a question to it
-- importar, which is accepts a String with a path to a file written with the previous language. The questions will then be imported to this quiz
+- `adicionarquestao` *(add question)*, which accepts as argument a `Questao` *(question)*, and is used to add a question to it
+- `importar` *(import)*, which is accepts a `String` with a path to a file written with the previous language. The questions will then be imported to this quiz
 
-The scoring of the test follows the following formula:
+The scoring of the test follows the following formulas:
 
-```
-score_question = points * sum( points_obtained_from_all_the_answers ) / 100;
-score_quiz = sum( score_of_each_question );
-```
-Please note that the formula is only pseudocode.
+$$
+scoreQuestion = \frac{ questionPoints * \sum_{n = 1}^{numberAnswers} pointsObtainedInAnswer(n) }{ 100 }
+$$
+
+$$
+scoreQuizz = \sum_{n = 1}^{numberQuestions} pointsObtainedInQuestion(n)
+$$
 
 
-##### Grupo
-This type is derived from the `Questionario`, supporting all of its functionalities, but going a bit further.
-This group of questions can be characterized by a topic (`tema`), type and difficulty. This is saved when the function `adicionarquestoes` is used. It can be used with these 3 attributes, using the following revolutionary syntax:
+##### Group: `Grupo`
+This type is derived from the `Questionario` *(Quizz)*, supporting all of its functionalities, but going a bit further.
+`Grupo` *(group)* represents a group of questions, and can be characterized by a `Tema tema` *(theme)*, type and `Dificuldade dificuldade` *(difficulty)*. These attributes are defined when questions are added, through the use of the function `adicionarquestoes` *(add questions)*. An example of the usage of this function is as follows:
 ```
 g2 % adicionarquestoes(q1, tema = [Tema_C], dificuldade = FACIL, tipo = "VerdadeiroFalso").
 ```
-Furthermore, the programmer can also define the minimum  number of questions that the user must complete before submitting the quiz, `minperguntasaresponder`, and also the number of questions to present in the quiz `nrperguntasaapresentar`.
+Furthermore, the programmer can also define the minimum  number of questions that the user must complete before submitting the quiz by defining `minperguntasaresponder` *(minimum questions to answer)*, as well as the number of questions to present in the quiz `nrperguntasaapresentar` *(number of questions to present)*.
 
 
-##### Questao
-This type defines a question. `pergunta` stores the text of the question, while `tema` defines the topic, `dificuldade` the difficulty, `pontuacao` its points, `respostas` is a list of possible answers, useful for all the answer types except the `LongaTextual`. Furthermore, there's `tempomaximo`, storing the maxmimum time the user has to answer this question. If this time passes, the answer won't be stored, but the quizz may continue.
-To finish, there's also a String to present the type of Question, so that the programmer can filter.
+##### Question: `Questao`
+The `Questao` *(question)* is essential, since it represents a question. `pergunta` *(question)* stores the text of the question, while `Tema tema` *(theme)* defines the theme, `Dificuldade dificuldade` *(difficulty)*  the difficulty and `pontuacao` *(points)* its points. `Lista< Resposta > respostas` *(list of answers)* is a list of possible answers, which is useful for all the question/answer types, with the exception of `LongaTextual` *(long text)* which is covered below. Furthermore, the `tempomaximo` *(maximum time)* can be defined, stating the maxmimum time the user has to answer the question. If this time passes while the user is answering, their answer won't be stored, but the quizz may continue.
+Additionally, there's also `tipo` *(type)*, a `String` useful for the programmer that wants to consult this value, for presentation reasons, for example.
 
-Furthermore, after a quiz is complete, the `respostadada` attribute will have information on the answer that the user chose for that question.
+To finish, after a quiz is complete, the `Resposta respostadada` *(given answer)* attribute will have information on the answer that the user chose for that question.
 
-- ##### Questao:VerdadeiroFalso
-  Type of question to be used with the `Resposta:VerdadeiroFalso` answer type. It represents a question with multiple answers, which the user must say whether he think's they are true or false.
+In our language, this type has similarities with abstract classes. No question can be created using this type, and its goal is to make the processing of the quizz easier and intuitive for the programmer. Several types of question can be created, which will be covered next.
+
+- ##### True or False : `Questao:VerdadeiroFalso`
+  This specification of the question type describes a "true or false" question, and is to be used with the `Resposta:VerdadeiroFalso` *(answer: true or false)* answer type. When this question is displayed, the user is presented with multiple sentences/entries. The user must then say wether each one is true or false. More info on the answers below.
 
 - ##### Questao:EscolhaMultipla
   This type of question is to be used with `Resposta:EscolhaMultipla`. It represents a question with multiple answers, of which the user must chose at least one.

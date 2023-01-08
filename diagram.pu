@@ -1,7 +1,7 @@
 @startuml Compilers project
 
 abstract class Questao {
-    + Pergunta pergunta
+    + String pergunta
     + Tema tema
     + Dificuldade dificuldade
     + Real pontuacao
