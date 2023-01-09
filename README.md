@@ -156,7 +156,7 @@ The following class diagram schemes the types supported by the language. Note th
 
 After the quiz is complete, the variable `duracao` *(duration)* will store how long it took to complete, while `pontuacao` *(score)* will contain the scoring of the quiz.
 
-It has 2 functios associated with it:
+It has two functions associated with it:
 - `adicionarquestao` *(add question)*, which accepts as argument a `Questao` *(question)*, and is used to add a question to it
 - `importar` *(import)*, which is accepts a `String` with a path to a file written with the previous language. The questions will then be imported to this quiz
 
@@ -188,166 +188,189 @@ To finish, after a quiz is complete, the `Resposta respostadada` *(given answer)
 
 In our language, this type has similarities with abstract classes. No question can be created using this type, and its goal is to make the processing of the quizz easier and intuitive for the programmer. Several types of question can be created, which will be covered next.
 
-- ##### True or False : `Questao:VerdadeiroFalso`
+- ##### Multiple Choice Question: `Questao:EscolhaMultipla`
+  This type describes a multiple choice question, and is to be used with `Resposta:EscolhaMultipla`. From all the choices presented, the user must choose at least one.
+
+- ##### True or False Question: `Questao:VerdadeiroFalso`
   This specification of the question type describes a "true or false" question, and is to be used with the `Resposta:VerdadeiroFalso` *(answer: true or false)* answer type. When this question is displayed, the user is presented with multiple sentences/entries. The user must then say wether each one is true or false. More info on the answers below.
 
-- ##### Questao:EscolhaMultipla
-  This type of question is to be used with `Resposta:EscolhaMultipla`. It represents a question with multiple answers, of which the user must chose at least one.
+- ##### Short Answer Question: `Question:CurtaTextual`
+  It represents a question where the user must write their answer to the program. This is to be used with the `Resposta:CurtaTextual` type. The user's answer will then be compared to the answers defined for this question, and if there's a match, it will be graded accordingly.
 
-- ##### Question:CurtaTextual
-  This is to be used with the `Resposta:CurtaTextual` type and it represents a question where the user must input an answer to the program. Their answer will then be compared to the answers for this question, and if they match, it will be graded accordingly.
-
-- ##### Question:LongaTextual
-  This type is to be used with `Resposta:LongaTextual` and represents a question where the user must also input text, but it will not be compared to any pre-set. The programmer can define what will happen to this stored answer. It can be printed on the screen or on a file, to be graded manually.
-
-##### Resposta
-This type is used to store a possible answer to a question.
-It has information on how much it values, if the user were to use it.
+- ##### Long Answer Question: `Question:LongaTextual`
+  This type represents a question where the user is also asked to input text. However, in this case, their answer won't be compared with pre-defined answers, since it's expected the input for this question to be more complex, and impossible for the program to grade on its own. After the quizz is finished, it is possible to display the answer given in the screen, or save it in a file on the computer, allowing the question to be graded manually.
+  Therefore, when creating it, no answer type should be added.
 
 
-  - ##### Resposta:VerdadeiroFalso
-  This is the type used to store options in `Questao:VerdadeiroFalso` questions. It allows the definition of more properties, when compared to the other answer types. Besides the attributes common to all answer types, it has 2 additional: the correction, a `Boolean` which indicates if the answer is true or false, and also a field specifying if there is any discount on the grade of the question if the user does not get it right.
-  We can also define these types using this AMAZING sintaxe:
+##### Answer: `Resposta`
 
-  ```
-  bbb as Resposta:VerdadeiroFalso.
-  bbb := "Não tenho fome.", false, 60, -30.
-  ```
+The `Resposta` *(answer)* represents none other than an answer. Each question has a list of answers that are applicable to it (keeping in mind that the long answer question is indeed a bit different). All answers have information on the points the user would obtain if they chose it or answered correctly - `Real pontuacao` *(points)*, which is shown as `pointsObtainedInAnswer(n)` in the expression above. These can be negative, too, as a way to punish wrong answers!
 
-  - ##### Resposta:EscolhaMultipla
-  Allows the definition of the string and the points the user gets if it choses it. These may be negative.
+This type is similar to the `Questao` *(question)*, since it also behaves somewhat like an abstract class. Several types of answers exist, and are explained below.
+
+  - ##### Multiple Choice Answer: `Resposta:EscolhaMultipla`
+    This is a basic answer type, which is used with the `Question:EscolhaMultipla` *(multiple choice question)* type. The programmer needs to define the string that will be shown to the user, and also needs the points associated with it as described above.
+
+    ```
+    correctAnswer as Resposta:EscolhaMultipla.
+    correctAnswer := "Her name is Ariel.", 60. 
+    ```
+
+  - ##### True or False Answer: `Resposta:VerdadeiroFalso`
+    This is another answer type, which is used with the `Question:VerdadeiroFalso` *(true or false questions)* type. It is a bit different from the previous one, however. Besides the text and points that we described in the previous type, the programmer also needs to inform the `Boolean correcao` *(correction)* and the `Real desconto` *(discount)*. When true or false questions are presented to the user, he will need to evalue the veracity of each one of them. If the user has wrongfuly determined the veracity of one answer, then the points associated with this answer will be the ones stored in `desconto` *(discount)*, instead of those in `pontuacao` *(points)*. 
+
+    ```
+    tfAnswer as Resposta:VerdadeiroFalso.
+    # order : text, correction, points, discount
+    tfAnswer := "Her name is not Ariel.", false, 60, -30.
+    ```
+
+
+  - ##### Short Answer: `Resposta:CurtaTextual`
+    This is the answer type associated with `Questao:CurtaTextual`, and it's fairly similar to `Resposta:EscolhaMultipla`. The user only needs to define the text to which the user answer will be matched, and also the points that are to be awarded.
+
+    As a cool feature, it is possible to define many at the same time in a list, using the following sintaxe (note that this also works for the other types of answers):
+    ```
+    shortAnswerList as Lista<Resposta:CurtaTextual>.
+    shortAnswerList := { "Ariel", 20 ; "Sebastian", 30 ; "Ursula", 30; "Flounder", -20 } .
+    ```
+
+  - ##### Long Answer: `Resposta:LongaTextual`
+    This type is a bit special. It is meant to be created automatically and used only after the quiz is done, in order to store the user's input. There is no way to define it manually.
+
+
+##### List: `Lista`
+`Lista` is an array-like type that permits the aggregation of multiple objects. 
+It implements the method `baralhar`, useful to mix the order of the questions in the quiz, for example:
+```
+# mix the questions in the quiz
+quiz->questoes%baralhar(). 
+```
+
+It can be initialized and filled using brackets, and even allows for objects to be initalized at the same time, as already shown above. Some other examples:
+```
+multipleChoiceList as Lista<Resposta:EscolhaMultipla>.
+multipleChoiceList := { "Her name is Ariel.", 60 ; "Her name is Ursula.", -20}. 
+
+
+trueFalseAnswerList as Lista<Resposta:VerdadeiroFalso>.
+trueFalseAnswerList := { "Her name is Ursula.", false, 60, -30 ; The kingdom's name is Atlantica.", true, 40, -20}.
+```
+
+##### Theme: `Tema`
+This is a simpler data type used to define the theme or topic of a question or question group. It is useful for filtering questions and/or results. These are implemented in a hierarchical fashion, and have an intuitive sintax:
+```
+# setting the theme of three questions
+question1->tema := [TECH->PROGRAMMING->PYTHON].
+question2->tema := [TECH->PROGRAMMING->JAVA].
+question3->tema := [ART->MUSIC].
+```
+For example, if we were to add questions to a `Grupo` *(group)*, we could set its `Tema tema` *(theme)* to be `[TECH->PROGRAMMING]`. Then, when we import questions, only the ones that fit this criteria (in our example, `question1` and `question2`) are going to be included in the group.
+
+
+##### Difficulty: `Dificuldade`
+Another simple data type, `Dificuldade` *(difficulty)* is used to store the difficulty level of the question, and has 3 possible values: `FACIL` *(easy)*, `MEDIO` *(medium)* and `DIFICIL` *(difficult)*. It can be used to filter questions similarly to how `Tema` *(theme)* can be used.
+```
+# setting the difficulty of a question
+question1->dificuldade := FACIL.
+```
+
+##### Other basic types
+  The following types are also implemented in this language. Their behaviour is similar to what one might expect.
+  - Boolean: `Boolean`
+  - Real Number: `Real`
+  - Integer Number: `Inteiro`
+  - String: `String`
   
-  ```
-  aaa as Resposta:EscolhaMultipla.
-  aaa := "Não tenho fome.", 60. 
-  ```
-
-  - ##### Resposta:CurtaTextual
-  This is the answer type associated with `Questao:CurtaTextual`, and it's similar to work with as `Resposta:EscolhaMultipla`. In this case, the answer that the user choses is going to be correct if it matches the answer provided.
-  ```
-  lr2 as Lista<Resposta:CurtaTextual>.
-  lr2 := { "Nee", 20 ; "Ja", 30 ; "Ik", 30; "outra", 20 } .
-  ```
-
-  - ##### Resposta:LongaTextual
-  This type is a bit special. It is meant to be created automatically and used only after the quiz is done, so that the asnwers the user gave is stored. There is no way to initialize it.
-
-
-##### Lista
-`Lista` is an array-like type that permits the aggregation of multiple objects. It has the method `baralhar`, useful to mix the order of the questions in the quiz, for example:
-```
-quiz->questoes%baralhar(). # mix the questions in the quiz
-```
-It allows the initialization with the use of brackets, and allows for objects to be initialized at the same time, for example:
-```
-lr1 as Lista<Resposta:EscolhaMultipla>.
-lr1 := { "Não tenho fome.", 60 ; "Estou cansada.", -20}. 
-
-
-lr2 as Lista<Resposta:VerdadeiroFalso>.
-lr2 := { "Não tenho fome.", false, 60, -30 ; "Estou cansada.", true, 40, -20}.
-```
-
-##### Tema
-This type is used to define the topic of the question or question group, filtering the questions that are included in it. It can be used in an hierarchical fashion. It's sintax is very intuitive:
-```
-q->tema := [TECH->PROGRAMMING->PYTHON]
-```
-This way, when creating a Grupo, we can say that we only want questions with tema \[TECH->PROGRAMMING], and in this case, our example would fit the criteria.
-
-##### Dificuldade
-To finish, there's this type, used to store the difficulty level of the question, and has 3 possible values: `FACIL`, `MEDIO` and `DIFICIL`. It can also be used to filter questions, just like Tema.
-
-##### Boolean
-Type that defines boolean values, and can be `true` or `false`.
-
 ---
 
 ### General functionalities
-In the previous examples, some of these were alread shown.
-
-This language supports multiple functionalities commonly present in general-purpose programming languages, such as (but not exclusive to):
+The developed language supports multiple functionalities commonly present in general-purpose programming language, as already demonstrated. Some of these will be described here as well.
 - #### variable declaration and initialization
-The declaration follows the sintaxe
-`q as Questionário.`
-`tx1 as Questão:CurtaTextual.`
+  To declare variables and initialize them, the following sintax is used:
+  ```
+  q as Questionario.
+  tx1 as Questao:CurtaTextual. 
+  ```
 
 - #### attribuition of values to variables
-The objects are initialized and the attributes that can be changed, are changed with:
-`tx1->tema := [TEMA_A].`
-`tx1->dificuldade := FACIL.`
+  When the objects ar initialized, the attributes will have default values. These can be changed with the following sintax:
+  ```
+  tx1->tema := [TEMA_A].
+  tx1->dificuldade := FACIL.
+  ```
 
-```
-lr2 as Lista<Resposta:CurtaTextual>.
-lr2 := { "Nee", 20 ; "Ja", 30 ; "Ik", 30; "outra", 20 } .
-```
-Answers can be inserted in lists using this nomencleature. Each answer will be `<string>, <points>`, and they are separated with a `;`.
-This is too much for me.
+  Some objects - namely, the `Resposta` *(answer)* types - can be initalized with custom values, using the following sintax:
+  ```
+  shortAnswerList as Lista<Resposta:CurtaTextual>.
+  shortAnswerList := { "Nee", 20 ; "Ja", 30 ; "Ik", 30; "outra", 20 } .
+  ```
+  In this case, each element that is to be inserted in the list is separated with a `;`.
 
 - #### comparation structures
-  This languages supports the following comparation structures:
+  The supported comparation structures are summarized in the following table:
 
-  | symbol | definition |
-  |---|---|
-  | `<-` | less than |
-  | `>-` | greater than |
-  | `<=` | less or equal than |
-  | `>=` | greater or equal than |
-  | `!=` | different than |
-  | `e` | logic and _(to be used with expressions)_ |
-  | `ou` | logic or _(to be used with expressions)_ |
+  | symbol | definition                                |
+  | ------ | ----------------------------------------- |
+  | `<-`   | less than                                 |
+  | `>-`   | greater than                              |
+  | `<=`   | less or equal than                        |
+  | `>=`   | greater or equal than                     |
+  | `!=`   | different than                            |
+  | `e`    | logic and _(to be used with expressions)_ |
+  | `ou`   | logic or _(to be used with expressions)_  |
 
 - #### desicion structures
-The language supports decision structures such as `if`, `else if` and `else`, but with different names (who would say.).
+  The language supports decision structures such as `if`, `else if` and `else`, but with different names (who would say 😉). We opted for the words `se` *(if)*, `ouse` *(else if)* and `senao` *(if not)*. Besides, the code blocks need to be delimited by `inicio` *(begining)* and `fim` *(fim)*.
 
-```
-se (g1->pontuacao < p) # p: int variable previously defined
-  inicio
-    apresentar(“You can't go to the second part. Your score: ” & str(g1->pontuação))
-  fim
-senao
-  inicio
-    apresentar(“Parabéns, concluiu a primeira fase”).
-  fim
-```
+  ```
+  se (g1->pontuacao < p) # p: int variable previously defined
+    inicio
+      apresentar(“You can't go to the second part. Your score: ” & str(g1->pontuação))
+    fim
+  senao
+    inicio
+      apresentar(“Parabéns, concluiu a primeira fase”).
+    fim
+  ```
 
 - #### cicles
-This language supports cycles, more specifically for-each cycles.
-```
-para (q as Questao em q1->questoes)
-inicio
-  t as String.
-  t := “LongaTextual”.
-  se (q->tipo == t)
+  This language supports cycles, more specifically for-each cycles. The word `para` *(for)* is used, and the delimiters are also `inicio` *(begining)* and `fim` *(end)*.
+  ```
+  para (q as Questao em q1->questoes)
   inicio
-    apresentar(“Respostas: “ & str(q->respostadada)).
+    t as String.
+    t := “LongaTextual”.
+    se (q->tipo == t)
+    inicio
+      apresentar(“Respostas: “ & str(q->respostadada)).
+    fim
   fim
-fim
-```
+  ```
 
 <br /><br />
 
 ### Built-in functions
-It also has some built-in functions, besides the ones associated with the types, useful for the use-case. These are:
+The developed language has some built-in functions that aren't associated with any types. These are as follows.
 
-- #### apresentarMenu (present menu)
-  Used to present the menu correspondent to a group of questions - can be either a Grupo or Questionario. Can also have an input for the number of seconds it will be possible to answer all questions presented. After this number has passed, no answer will be saved.
+- #### display menu: `apresentarMenu`
+  This is the function used to start the quizz. A `Questionario` *(quizz)* (or `Grupo` *(group)*) needs to be passed in the arguments. Additionally, the user can also provide a number which represent the number of seconds that the user has to finish the quizz. After this time has passsed, the user won't be able to answer or save any unanswered questions.
 
-  Better said, this will present the quiz.
   ```
-  apresentarMenu(g2).
+  # starts the quizz with the info on techGroup, with time limit of 300 seconds
+  apresentarMenu(techGroup, 300).
   ```
 
-- #### apresentar
+- #### display: `apresentar`
   Used to print something in the console.
   ```
   apresentar(“Hello world").
   ```
 
 - ### str
-  Used to convert number values to String.
+  Used to convert number values to `String`.
   ```
-  apresentar(“Pontos” & str(g1->pontuação)).
+  apresentar(The pontuation is: ” & str(techGroup->pontuacao)).
   ```
 
 
