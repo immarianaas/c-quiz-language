@@ -95,7 +95,7 @@ This process included all phases of construction of programming languages:
 
 <h2 id="whats_done">What's done</h2>
 
-### Idea
+### 💡 Idea
 The programming language we designed and developed for this project is oriented to creating and manipulating interactive quizzes.
 
 The language supports 4 different types of questions: multiple-choice, true/false, short answer or long answer questions. It also allows the programmer to configure the way the quizz will be delivered, for example, through defining the order that the questions are shown, or defining a time limit for it. (and for the questions themselves too)
@@ -104,50 +104,63 @@ The questions can be uploaded from files written in a second language developed 
 
 When executed, the program will present the user with the quizz defined. It will wait for the users input and store the results, so that it can show a results report at the end of the quiz.
 
-#### Database Language
-This is the secondary language, and it has the goal of allowing questions to be easily stored and uploaded to the quiz without the need of writing them in the main code.
-
-Examples:
-```
-questao:EscolhaMultipla medio pontuacao=20 [CIENCIA->PLANTAS->Q1] "A fotossíntese..."
-inicio
-  "é composta pela fase fotoquímica onde ocorre o ciclo de calvin " false pontuacao=-20;
-  "é composta pela fase química onde ocorre o ciclo de calvin" true pontuacao=70; 
-  "permite obter Oxigênio e glicose" false pontuacao=-20; 
-  "permite obter Dóxido de Carbono e glicose" true pontuacao=30;
-  "permite obter luz solar" false pontuacao=-40;
-fim 
-```
-
-```
-questao:CurtaTextual facil pontuacao=10 [HISTORIA->MUNDIAL->Q5]  "Em que ano foi descoberto o caminho marítimo para a Índia?"
-inicio
-  "1498" pontuacao=100;
-fim
-```
-
-Every question described with this language has information on:
-- the type of question (in the example `EscolhaMultipla` -- multiple-choice; `CurtaTextual` -- short answer)
-- difficulty (optional) (in the example `medio` -- medium)
-- points (optional) (in the example `pontuacao=20` -- 20 points)
-- topic (hirerarchic) (in the example `[CIENCIA->PLANTAS->Q1]` -- the topic `Q1` which is within the topic `PLANTAS` (plants) which is within the topic `CIENCIA` (science))
-- the question string (optional) (in the example `A fotossíntese...` -- fotossinteses...)
-- the answers (not optional, but can be none..)
-
-The answers have the following information:
-- answer string 
-- true/false (optional)
-- points (optional) 
-
-### Quiz language
-This is the main language of the project, which is more similar to a general programming language. It is responsible for the definition, creation and presentation of the quizz itself. It can be used alone or with a secondary***** language. 
 
 ---
+<div id="quiz-top"></div>
 
-#### Types
+### 📗 Quiz language
+This is the main language of the project, which is more similar to a general programming language. It is responsible for the definition, creation and presentation of the quizz itself. It can be used alone or with a secondary***** language. 
+
+<details>
+  <summary>Section Index</summary>
+  <ol>
+    <li><a href="#types">Types</a></li>
+    <ol>
+      <li><a href="#">Quizz: <code>Questionario</code></a></li>
+      <li><a href="#">Group: <code>Grupo</code></a></li>
+      <li><a href="#">Question: <code>Questao</code></a></li>
+      <!--<ol>
+        <li><a href="#">Multiple Choice Question: Questao:EscolhaMultipla</a></li>
+        <li><a href="#">True or False Question: Questao:VerdadeiroFalso</a></li>
+        <li><a href="#">Short Answer Question: Question:CurtaTextual</a></li>
+        <li><a href="#">Long Answer Question: Question:LongaTextual</a></li>
+      </ol>-->
+      <li><a href="#">Answer: <code>Resposta</code></a></li>
+        <!--<ol>
+          <li><a href="#">Multiple Choice Answer: Resposta:EscolhaMultipla</a></li>
+          <li><a href="#">True or False Answer: Resposta:VerdadeiroFalso</a></li>
+          <li><a href="#">Short Answer: Resposta:CurtaTextual</a></li>
+          <li><a href="#">Long Answer: Resposta:LongaTextual</a></li>
+        </ol>-->
+      <li><a href="#">List: <code>Lista</code></a></li>
+      <li><a href="#">Theme: <code>Tema</code></a></li>
+      <li><a href="#">Difficulty: <code>Dificuldade</code></a></li>
+      <li><a href="#">Other basic types</a></li>
+    </ol>
+    <li><a href="#">General functionalities</a></li>
+    <ol>
+      <li><a href="#">Variable declaration and initialization</a></li>
+      <li><a href="#">Attribuition of values to variables</a></li>
+      <li><a href="#">Comparation structures</a></li>
+      <li><a href="#">Desicion structures</a></li>
+      <li><a href="#">Cicles</a></li>
+    </ol>
+    <li><a href="#">Built-in functions</a></li>
+    <ol>
+      <li><a href="#">Display menu: <code>apresentarMenu</code></a></li>
+      <li><a href="#">Display: <code>apresentar</code></a></li>
+      <li><a href="#">To string: <code>str</code></a></li>
+    </ol>
+  </ol>
+</details>
+
+
+#### 🌸 Types
 The following class diagram schemes the types supported by the language. Note that this diagram doesn't represent with complete accuracy the structure, since the types aren't classes _per se_.
 
 ![Diagram](./diagram.svg)
+<p align="right">(<a href="#quiz-top">back to top of the <em>Quiz language</em> section</a>)</p>
+
 
 
 ##### Quizz: `Questionario` 
@@ -171,6 +184,8 @@ scoreQuizz = \sum_{n = 1}^{numberQuestions} pointsObtainedInQuestion(n)
 $$
 
 
+<p align="right">(<a href="#quiz-top">back to top of the <em>Quiz language</em> section</a>)</p>
+
 ##### Group: `Grupo`
 This type is derived from the `Questionario` *(Quizz)*, supporting all of its functionalities, but going a bit further.
 `Grupo` *(group)* represents a group of questions, and can be characterized by a `Tema tema` *(theme)*, type and `Dificuldade dificuldade` *(difficulty)*. These attributes are defined when questions are added, through the use of the function `adicionarquestoes` *(add questions)*. An example of the usage of this function is as follows:
@@ -178,6 +193,8 @@ This type is derived from the `Questionario` *(Quizz)*, supporting all of its fu
 g2 % adicionarquestoes(q1, tema = [Tema_C], dificuldade = FACIL, tipo = "VerdadeiroFalso").
 ```
 Furthermore, the programmer can also define the minimum  number of questions that the user must complete before submitting the quiz by defining `minperguntasaresponder` *(minimum questions to answer)*, as well as the number of questions to present in the quiz `nrperguntasaapresentar` *(number of questions to present)*.
+
+<p align="right">(<a href="#quiz-top">back to top of the <em>Quiz language</em> section</a>)</p>
 
 
 ##### Question: `Questao`
@@ -201,6 +218,7 @@ In our language, this type has similarities with abstract classes. No question c
   This type represents a question where the user is also asked to input text. However, in this case, their answer won't be compared with pre-defined answers, since it's expected the input for this question to be more complex, and impossible for the program to grade on its own. After the quizz is finished, it is possible to display the answer given in the screen, or save it in a file on the computer, allowing the question to be graded manually.
   Therefore, when creating it, no answer type should be added.
 
+<p align="right">(<a href="#quiz-top">back to top of the <em>Quiz language</em> section</a>)</p>
 
 ##### Answer: `Resposta`
 
@@ -238,6 +256,7 @@ This type is similar to the `Questao` *(question)*, since it also behaves somewh
   - ##### Long Answer: `Resposta:LongaTextual`
     This type is a bit special. It is meant to be created automatically and used only after the quiz is done, in order to store the user's input. There is no way to define it manually.
 
+<p align="right">(<a href="#quiz-top">back to top of the <em>Quiz language</em> section</a>)</p>
 
 ##### List: `Lista`
 `Lista` is an array-like type that permits the aggregation of multiple objects. 
@@ -256,6 +275,7 @@ multipleChoiceList := { "Her name is Ariel.", 60 ; "Her name is Ursula.", -20}.
 trueFalseAnswerList as Lista<Resposta:VerdadeiroFalso>.
 trueFalseAnswerList := { "Her name is Ursula.", false, 60, -30 ; The kingdom's name is Atlantica.", true, 40, -20}.
 ```
+<p align="right">(<a href="#quiz-top">back to top of the <em>Quiz language</em> section</a>)</p>
 
 ##### Theme: `Tema`
 This is a simpler data type used to define the theme or topic of a question or question group. It is useful for filtering questions and/or results. These are implemented in a hierarchical fashion, and have an intuitive sintax:
@@ -267,6 +287,7 @@ question3->tema := [ART->MUSIC].
 ```
 For example, if we were to add questions to a `Grupo` *(group)*, we could set its `Tema tema` *(theme)* to be `[TECH->PROGRAMMING]`. Then, when we import questions, only the ones that fit this criteria (in our example, `question1` and `question2`) are going to be included in the group.
 
+<p align="right">(<a href="#quiz-top">back to top of the <em>Quiz language</em> section</a>)</p>
 
 ##### Difficulty: `Dificuldade`
 Another simple data type, `Dificuldade` *(difficulty)* is used to store the difficulty level of the question, and has 3 possible values: `FACIL` *(easy)*, `MEDIO` *(medium)* and `DIFICIL` *(difficult)*. It can be used to filter questions similarly to how `Tema` *(theme)* can be used.
@@ -274,6 +295,7 @@ Another simple data type, `Dificuldade` *(difficulty)* is used to store the diff
 # setting the difficulty of a question
 question1->dificuldade := FACIL.
 ```
+<p align="right">(<a href="#quiz-top">back to top of the <em>Quiz language</em> section</a>)</p>
 
 ##### Other basic types
   The following types are also implemented in this language. Their behaviour is similar to what one might expect.
@@ -282,18 +304,19 @@ question1->dificuldade := FACIL.
   - Integer Number: `Inteiro`
   - String: `String`
   
----
+<p align="right">(<a href="#quiz-top">back to top of the <em>Quiz language</em> section</a>)</p>
 
-### General functionalities
+#### 🌻 General functionalities
 The developed language supports multiple functionalities commonly present in general-purpose programming language, as already demonstrated. Some of these will be described here as well.
-- #### variable declaration and initialization
+
+- ##### Variable declaration and initialization
   To declare variables and initialize them, the following sintax is used:
   ```
   q as Questionario.
   tx1 as Questao:CurtaTextual. 
   ```
 
-- #### attribuition of values to variables
+- ##### Attribuition of values to variables
   When the objects ar initialized, the attributes will have default values. These can be changed with the following sintax:
   ```
   tx1->tema := [TEMA_A].
@@ -307,7 +330,7 @@ The developed language supports multiple functionalities commonly present in gen
   ```
   In this case, each element that is to be inserted in the list is separated with a `;`.
 
-- #### comparation structures
+- ##### Comparation structures
   The supported comparation structures are summarized in the following table:
 
   | symbol | definition                                |
@@ -320,7 +343,7 @@ The developed language supports multiple functionalities commonly present in gen
   | `e`    | logic and _(to be used with expressions)_ |
   | `ou`   | logic or _(to be used with expressions)_  |
 
-- #### desicion structures
+- ##### Desicion structures
   The language supports decision structures such as `if`, `else if` and `else`, but with different names (who would say 😉). We opted for the words `se` *(if)*, `ouse` *(else if)* and `senao` *(if not)*. Besides, the code blocks need to be delimited by `inicio` *(begining)* and `fim` *(fim)*.
 
   ```
@@ -334,7 +357,7 @@ The developed language supports multiple functionalities commonly present in gen
     fim
   ```
 
-- #### cicles
+- ##### Cicles
   This language supports cycles, more specifically for-each cycles. The word `para` *(for)* is used, and the delimiters are also `inicio` *(begining)* and `fim` *(end)*.
   ```
   para (q as Questao em q1->questoes)
@@ -348,12 +371,13 @@ The developed language supports multiple functionalities commonly present in gen
   fim
   ```
 
-<br /><br />
+<p align="right">(<a href="#quiz-top">back to top of the <em>Quiz language</em> section</a>)</p>
 
-### Built-in functions
+
+#### 🏵 Built-in functions
 The developed language has some built-in functions that aren't associated with any types. These are as follows.
 
-- #### display menu: `apresentarMenu`
+- ##### Display menu: `apresentarMenu`
   This is the function used to start the quizz. A `Questionario` *(quizz)* (or `Grupo` *(group)*) needs to be passed in the arguments. Additionally, the user can also provide a number which represent the number of seconds that the user has to finish the quizz. After this time has passsed, the user won't be able to answer or save any unanswered questions.
 
   ```
@@ -361,36 +385,56 @@ The developed language has some built-in functions that aren't associated with a
   apresentarMenu(techGroup, 300).
   ```
 
-- #### display: `apresentar`
+- ##### Display: `apresentar`
   Used to print something in the console.
   ```
   apresentar(“Hello world").
   ```
 
-- ### str
+- #### To string: `str`
   Used to convert number values to `String`.
   ```
   apresentar(The pontuation is: ” & str(techGroup->pontuacao)).
   ```
 
+<p align="right">(<a href="#quiz-top">back to top of the <em>Quiz language</em> section</a>)</p>
 
-<!--
-The programming language developed in this project allows the design of a quiz. When executed, the program will present questions of multiple choice, wait for the answer and store the results, so that, in the end, it can show a results report.
+---
 
-There should be a questions data base. Each question should be characterized by a topic, one or more key-words and various answers, right and wrong. The database can be distributed among one or more files. For example, there ca be a file per topic.
-Topics, the questions themselves and even the answers can have a diffeerent difficult level associated, so that tests of different difficulty can be generated.
+### Database Language
+This is the secondary language, and it has the goal of allowing questions to be easily stored and uploaded to the quiz without the need of writing them in the main code.
 
-A languagem secundária é usada para descrever o conteúdo dos ficheiros de perguntas, usado para carregar a base de dados para memória.
+Examples:
+```
+questao:EscolhaMultipla medio pontuacao=20 [CIENCIA->PLANTAS->Q1] "A fotossíntese..."
+inicio
+  "é composta pela fase fotoquímica onde ocorre o ciclo de calvin " false pontuacao=-20;
+  "é composta pela fase química onde ocorre o ciclo de calvin" true pontuacao=70; 
+  "permite obter Oxigênio e glicose" false pontuacao=-20; 
+  "permite obter Dóxido de Carbono e glicose" true pontuacao=30;
+  "permite obter luz solar" false pontuacao=-40;
+fim 
+```
 
-A primária é para desenhar um teste. Esta possui: 
-- constantes e variaveis, escalares e nao escalares
-- estruturas repetitivas
-- estruturas condicionais
-- estruturas de monitorização dos tempos, seja de cada resposta, seja do total
+```
+questao:CurtaTextual facil pontuacao=10 [HISTORIA->MUNDIAL->Q5]  "Em que ano foi descoberto o caminho marítimo para a Índia?"
+inicio
+  "1498" pontuacao=100;
+fim
+```
 
-A compilação deve gerar um programa q qdo executado realiza o teste iterativamnete, pergunta a pergunta.
--->
+Every question described with this language has information on:
+- the type of question (in the example `EscolhaMultipla` -- multiple-choice; `CurtaTextual` -- short answer)
+- difficulty (optional) (in the example `medio` -- medium)
+- points (optional) (in the example `pontuacao=20` -- 20 points)
+- topic (hirerarchic) (in the example `[CIENCIA->PLANTAS->Q1]` -- the topic `Q1` which is within the topic `PLANTAS` (plants) which is within the topic `CIENCIA` (science))
+- the question string (optional) (in the example `A fotossíntese...` -- fotossinteses...)
+- the answers (not optional, but can be none..)
 
+The answers have the following information:
+- answer string 
+- true/false (optional)
+- points (optional) 
 
 
 
