@@ -4,10 +4,9 @@
 <!-- PROJECT SHIELDS -->
 <div align="center">
 
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
+[![Forks][forks-shield]][forks-url] [![Stargazers][stars-shield]][stars-url] [![Issues][issues-shield]][issues-url] [![MIT License][license-shield]][license-url]
+
+</div>
 
 <!--
 [![LinkedIn][mariana-linkedin-shield1]][mariana-linkedin-url]
@@ -24,7 +23,6 @@
 <strong>☜( ˊᵕˋ )☞</strong>
 ଘ(੭*ˊᵕˋ)੭* ̀ˋ 
 -->
-</div>
 
 
 <!-- PROJECT LOGO 
@@ -104,8 +102,12 @@ The questions can be uploaded from files written in a second language developed 
 
 When executed, the program will present the user with the quizz defined. It will wait for the users input and store the results, so that it can show a results report at the end of the quiz.
 
+#### 🏗 Built with
 
----
+[![ANTLR][antlr-shield]][antlr-url] [![Java][java-shield]][java-url]
+
+
+
 <div id="quiz-top"></div>
 
 ### 📗 Quiz language
@@ -278,6 +280,7 @@ trueFalseAnswerList := { "Her name is Ursula.", false, 60, -30 ; The kingdom's n
 <p align="right">(<a href="#quiz-top">back to top of the <em>Quiz language</em> section</a>)</p>
 
 <div id="theme"></div>
+
 ##### Theme: `Tema`
 This is a simpler data type used to define the theme or topic of a question or question group. It is useful for filtering questions and/or results. These are implemented in a hierarchical fashion, and have an intuitive sintax:
 ```
@@ -345,7 +348,7 @@ The developed language supports multiple functionalities commonly present in gen
   | `ou`   | logic or _(to be used with expressions)_  |
 
 - ##### Desicion structures
-  The language supports decision structures such as `if`, `else if` and `else`, but with different names (who would say 😉). We opted for the words `se` *(if)*, `ouse` *(else if)* and `senao` *(if not)*. Besides, the code blocks need to be delimited by `inicio` *(begining)* and `fim` *(fim)*.
+  The language supports decision structures such as `if`, `else if` and `else`, but with different names (who would say). We opted for the words `se` *(if)*, `ouse` *(else if)* and `senao` *(if not)*. Besides, the code blocks need to be delimited by `inicio` *(begining)* and `fim` *(fim)*.
 
   ```
   se (g1->pontuacao < p) # p: int variable previously defined
@@ -401,10 +404,10 @@ The developed language has some built-in functions that aren't associated with a
 <p align="right">(<a href="#quiz-top">back to top of the <em>Quiz language</em> section</a>)</p>
 
 
-### Database Language
+### 📘 Database Language
 It was with the goal of facilitating the storage of questions that this secondary language was created. It allows the quizz creator to write and save questions that are directly interepreted by the primary language. When creating the quiz, we can add questions dynamically in the code, or import them from a file where this language should be employed.
 
-#### Sintax overview
+#### 🌼 Sintax overview
 - ##### Questions
 
   The code block below shows a schema of how the questions are defined. All question types follow the same schema, except the `LongaTextual` *(long answer question)*, which does not accept any answers.
@@ -502,32 +505,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 [license-shield]: https://img.shields.io/github/license/immarianaas/c-quiz-language.svg?style=for-the-badge
 [license-url]: https://github.com/immarianaas/c-quiz-language/blob/master/LICENSE
 
-<!--
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
--->
-
-[product-screenshot]: images/screenshot.png
-[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[Next-url]: https://nextjs.org/
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
-[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
-[Vue-url]: https://vuejs.org/
-[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-[Angular-url]: https://angular.io/
-[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
-[Svelte-url]: https://svelte.dev/
-[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
-[Laravel-url]: https://laravel.com
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
-
-
-
-
 
 [mariana-github-shield1]: https://img.shields.io/badge/--black.svg?style=for-the-badge&logo=github&colorB=555
 [mariana-linkedin-shield1]: https://img.shields.io/badge/--black.svg?style=for-the-badge&logo=linkedin&colorB=0e76a8
@@ -551,3 +528,14 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 [Python-logo]: https://img.shields.io/badge/Python-306998?style=for-the-badge&amp;logo=python&amp;logoColor=white
 [Python-url]: https://python.org
+
+
+
+[antlr-shield]: https://img.shields.io/badge/ANTLR-EF3225?style=for-the-badge
+[antlr-url]: https://www.antlr.org/
+
+[java-shield]: https://img.shields.io/badge/Java-007CBD?style=for-the-badge
+[java-url]: https://www.java.com/
+
+[example-shield]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
+[example-url]: https://getbootstrap.com/
