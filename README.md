@@ -277,6 +277,7 @@ trueFalseAnswerList := { "Her name is Ursula.", false, 60, -30 ; The kingdom's n
 ```
 <p align="right">(<a href="#quiz-top">back to top of the <em>Quiz language</em> section</a>)</p>
 
+<div id="theme"></div>
 ##### Theme: `Tema`
 This is a simpler data type used to define the theme or topic of a question or question group. It is useful for filtering questions and/or results. These are implemented in a hierarchical fashion, and have an intuitive sintax:
 ```
@@ -399,42 +400,58 @@ The developed language has some built-in functions that aren't associated with a
 
 <p align="right">(<a href="#quiz-top">back to top of the <em>Quiz language</em> section</a>)</p>
 
----
 
 ### Database Language
-This is the secondary language, and it has the goal of allowing questions to be easily stored and uploaded to the quiz without the need of writing them in the main code.
+It was with the goal of facilitating the storage of questions that this secondary language was created. It allows the quizz creator to write and save questions that are directly interepreted by the primary language. When creating the quiz, we can add questions dynamically in the code, or import them from a file where this language should be employed.
 
-Examples:
-```
-questao:EscolhaMultipla medio pontuacao=20 [CIENCIA->PLANTAS->Q1] "A fotossíntese..."
-inicio
-  "é composta pela fase fotoquímica onde ocorre o ciclo de calvin " false pontuacao=-20;
-  "é composta pela fase química onde ocorre o ciclo de calvin" true pontuacao=70; 
-  "permite obter Oxigênio e glicose" false pontuacao=-20; 
-  "permite obter Dóxido de Carbono e glicose" true pontuacao=30;
-  "permite obter luz solar" false pontuacao=-40;
-fim 
-```
+#### Sintax overview
+- ##### Questions
 
-```
-questao:CurtaTextual facil pontuacao=10 [HISTORIA->MUNDIAL->Q5]  "Em que ano foi descoberto o caminho marítimo para a Índia?"
-inicio
-  "1498" pontuacao=100;
-fim
-```
+  The code block below shows a schema of how the questions are defined. All question types follow the same schema, except the `LongaTextual` *(long answer question)*, which does not accept any answers.
 
-Every question described with this language has information on:
-- the type of question (in the example `EscolhaMultipla` -- multiple-choice; `CurtaTextual` -- short answer)
-- difficulty (optional) (in the example `medio` -- medium)
-- points (optional) (in the example `pontuacao=20` -- 20 points)
-- topic (hirerarchic) (in the example `[CIENCIA->PLANTAS->Q1]` -- the topic `Q1` which is within the topic `PLANTAS` (plants) which is within the topic `CIENCIA` (science))
-- the question string (optional) (in the example `A fotossíntese...` -- fotossinteses...)
-- the answers (not optional, but can be none..)
+  ```
+  # for most question types
+  questao:<type of question> <optional: difficulty> <optional: points> <theme> <optional: question text>
+  inicio
+    <one or more answers>
+  fim
 
-The answers have the following information:
-- answer string 
-- true/false (optional)
-- points (optional) 
+  # for LongaTextual question type
+  questao:<type of question> <optional: difficulty> <optional: points> <theme> <optional: question text>
+  ```
+
+
+  The annotations in the schemas are described in the following table.
+
+  | annotation       | possible values                               |
+  | ---------------- | --------------------------------------------- |
+  | type of question | `EscolhaMultipla` *(multiple choice)* <br /> `VerdadeiroFalso` *(true or false)* <br /> `CurtaTextual` *(short answer)* <br /> `LongaTextual` *(long answer)* |
+  | difficulty             | `facil` *(easy)*<br /> `medio` *(medium)* <br /> `dificil` *(difficult)* |
+  | points             | any integer value |
+  | theme             | `[ THEME1 ( -> SUBTHEME1 -> ... ) ]` <br /> - this follows an hierarchichal approach, as described <a href="#theme">here</a> <br />-  the `THEME1` and `SUBTHEME1` in the schema represent any alphanumerical string |
+  | question text   | any string  |
+
+
+
+- ##### Answer
+  Answers need to be provided to any question other than `LongaTextual` *(long answer question)*. They need to follow the schema in the code block below. 
+  ```
+  # for most answer/question types
+  <answer text> pontuacao=<points>;
+
+  #for VerdadeiroFalso answer/question types
+  <answer text> <correction> pontuacao=( <points awarded if right>, <points awarded if wrong>)
+  ```
+
+  Similarly, the following table described the annotations in the schemas.
+
+  | annotation       | possible values                               |
+  | ---------------- | --------------------------------------------- |
+  | answer text | any string |
+  | points | any integer value |
+  | correction | `true` <br /> `false` |
+  | points awarded if right | any integer value |
+  | points awarded if wrong | any integer value  |
 
 
 
