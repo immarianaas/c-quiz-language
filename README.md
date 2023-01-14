@@ -6,9 +6,22 @@
 
 [![Forks][forks-shield]][forks-url] [![Stargazers][stars-shield]][stars-url] [![Issues][issues-shield]][issues-url] [![MIT License][license-shield]][license-url]
 
+
+
+[![LinkedIn][linkedin-shield]][diogo-linkedin-url][![Contributors][diogo-github-shield]][diogo-github-url] &nbsp;&nbsp;  [![LinkedIn][linkedin-shield]][mariana-linkedin-url][![Contributors][mariana-github-shield]][mariana-github-url] &nbsp;&nbsp;  [![LinkedIn][linkedin-shield]][mariana-linkedin-url][![Contributors][mariana-github-shield]][mariana-github-url] &nbsp;&nbsp;  [![LinkedIn][linkedin-shield]][mariana-linkedin-url][![Contributors][mariana-github-shield]][mariana-github-url] &nbsp;&nbsp;  [![LinkedIn][linkedin-shield]][rafael-linkedin-url][![Contributors][rafael-github-shield]][mariana-github-url] 
+
 </div>
 
 <!--
+
+ordem:
+
+- Diogo
+- Luis
+- Maria
+- Mariana
+- Rafael
+
 [![LinkedIn][mariana-linkedin-shield1]][mariana-linkedin-url]
 [![Contributors][mariana-github-shield]][mariana-github-url]
 <strong>☜(⌒ᵕ⌒)☞</strong>
@@ -75,17 +88,17 @@
 <h2 id="introduction">Introduction</h2>
 A <strong>transpiler</strong> can be seen as a <i>translator</i> of the source language to a destination language. During this process, not only the syntactic validity of the program should be checked, but also its semantic correctness.
 
-### Goals
-The goal of this work involved developing two languages: one for the transpiler -- which is the main language of the project, and one to read structured information.
+### 🏁 Goals
+The goal of this work involved developing two languages: one for the transpiler - which is the main language of the project -, and the other to read structured information.
 
 This process included all phases of construction of programming languages:
 - Conception and definition of a programming language (sintax and semantics)
-- Lexical analysis implementation in ANTLR4
-- Definition of the semantic rules that are to apply to the language, and their application, in regards to the previous point
+- Lexical analysis implementation in <a href="https://www.antlr.org/">ANTLR4</a>
+- Definition and enforcement of the semantic rules that are to be applied to the language
 - Writing documentation on the language
 - Critical choice on the destination language
 - Definition of the code generation patterns
-- Concratization of the transpiler as a whole
+- Concretization of the transpiler as a whole
 
 
 <strong>Note</strong>: the information presented on both <strong>Information</strong> and <strong>Goals</strong> are described with more detail in the project guide, which is in Portuguese.
@@ -96,13 +109,19 @@ This process included all phases of construction of programming languages:
 ### 💡 Idea
 The programming language we designed and developed for this project is oriented to creating and manipulating interactive quizzes.
 
-The language supports 4 different types of questions: multiple-choice, true/false, short answer or long answer questions. It also allows the programmer to configure the way the quizz will be delivered, for example, through defining the order that the questions are shown, or defining a time limit for it. (and for the questions themselves too)
+The language supports 4 different types of questions: 
+- multiple choice questions
+- true or false questions
+- short answer questions
+- long answer questions
 
-The questions can be uploaded from files written in a second language developed in the scope of this projct, or can be created along with the other code. Both options coexist.
+It also allows the programmer to configure the way the quiz will be delivered. For example, it is possible to define the order in which the questions are shown, or to define a time limit for not only each question, but also for the whole quiz.
 
-When executed, the program will present the user with the quizz defined. It will wait for the users input and store the results, so that it can show a results report at the end of the quiz.
+The questions can be defined along the rest of the code for the quiz, or separately, in well-structured text files. This is where the second language comes in handy. It is used to read questions from text files, allowing them to act as databases for easier reuse of questions in different quizzes.
 
-#### 🏗 Built with
+When a quiz is programmed and executed, the program will present it to the user. Then it will patiently wait for the user's input, storing it. The programmer can also choose to display the results report or answers given in the screen, or save them in a text file to be reviewed later.
+
+### 🏗 Built with
 
 [![ANTLR][antlr-shield]][antlr-url] [![Java][java-shield]][java-url]
 
@@ -111,29 +130,17 @@ When executed, the program will present the user with the quizz defined. It will
 <div id="quiz-top"></div>
 
 ### 📗 Quiz language
-This is the main language of the project, which is more similar to a general programming language. It is responsible for the definition, creation and presentation of the quizz itself. It can be used alone or with a secondary***** language. 
+This is the main language of the project, which is somewhat similar to a general programming language. It is responsible for the definition, creation and presentation of the quiz itself.
 
 <details>
   <summary>Section Index</summary>
   <ol>
     <li><a href="#types">Types</a></li>
     <ol>
-      <li><a href="#">Quizz: <code>Questionario</code></a></li>
+      <li><a href="#">Quiz: <code>Questionario</code></a></li>
       <li><a href="#">Group: <code>Grupo</code></a></li>
       <li><a href="#">Question: <code>Questao</code></a></li>
-      <!--<ol>
-        <li><a href="#">Multiple Choice Question: Questao:EscolhaMultipla</a></li>
-        <li><a href="#">True or False Question: Questao:VerdadeiroFalso</a></li>
-        <li><a href="#">Short Answer Question: Question:CurtaTextual</a></li>
-        <li><a href="#">Long Answer Question: Question:LongaTextual</a></li>
-      </ol>-->
       <li><a href="#">Answer: <code>Resposta</code></a></li>
-        <!--<ol>
-          <li><a href="#">Multiple Choice Answer: Resposta:EscolhaMultipla</a></li>
-          <li><a href="#">True or False Answer: Resposta:VerdadeiroFalso</a></li>
-          <li><a href="#">Short Answer: Resposta:CurtaTextual</a></li>
-          <li><a href="#">Long Answer: Resposta:LongaTextual</a></li>
-        </ol>-->
       <li><a href="#">List: <code>Lista</code></a></li>
       <li><a href="#">Theme: <code>Tema</code></a></li>
       <li><a href="#">Difficulty: <code>Dificuldade</code></a></li>
@@ -158,22 +165,22 @@ This is the main language of the project, which is more similar to a general pro
 
 
 #### 🌸 Types
-The following class diagram schemes the types supported by the language. Note that this diagram doesn't represent with complete accuracy the structure, since the types aren't classes _per se_.
+The following class diagram schemes the types supported by the language. Note that this diagram doesn't represent with complete accuracy the structure, since our types aren't classes _per se_.
 
 ![Diagram](./diagram.svg)
 <p align="right">(<a href="#quiz-top">back to top of the <em>Quiz language</em> section</a>)</p>
 
 
 
-##### Quizz: `Questionario` 
+##### Quiz: `Questionario` 
 
-`Questionario` *(quizz)* is the type of data that contains the properties of the quiz the user wants to create. These includes the questions that are going to be considered, as well as other customization options, such as the `tempomaximo` *(maximum time)* - which defines a maximum time to complete the quizz, after which the answers won't be stored nor considered for the scoring.
+`Questionario` *(quiz)* is the type of data that contains the properties of the quiz the programmer wants to create. These includes the questions that are going to be considered, as well as the `tempomaximo` *(maximum time)* - which defines a maximum time to complete the quiz, after which the answers won't be stored nor considered for the scoring.
 
-After the quiz is complete, the variable `duracao` *(duration)* will store how long it took to complete, while `pontuacao` *(score)* will contain the scoring of the quiz.
+After the user has completed the quiz, the variable `duracao` *(duration)* will store how the time it took to complete, while `pontuacao` *(score)* will contain the awarded score.
 
 It has two functions associated with it:
 - `adicionarquestao` *(add question)*, which accepts as argument a `Questao` *(question)*, and is used to add a question to it
-- `importar` *(import)*, which is accepts a `String` with a path to a file written with the previous language. The questions will then be imported to this quiz
+- `importar` *(import)*, which is accepts a `String` with a path to a file written according to the <strong>SECOND LANGAUGE TO DO ADD LINK</strong>. All the questions there will then be imported to this quiz
 
 The scoring of the test follows the following formulas:
 
@@ -182,54 +189,78 @@ scoreQuestion = \frac{ questionPoints * \sum_{n = 1}^{numberAnswers} pointsObtai
 $$
 
 $$
-scoreQuizz = \sum_{n = 1}^{numberQuestions} pointsObtainedInQuestion(n)
+scoreQuiz = \sum_{n = 1}^{numberQuestions} pointsObtainedInQuestion(n)
 $$
 
 
 <p align="right">(<a href="#quiz-top">back to top of the <em>Quiz language</em> section</a>)</p>
 
 ##### Group: `Grupo`
-This type is derived from the `Questionario` *(Quizz)*, supporting all of its functionalities, but going a bit further.
+This type is derived from the `Questionario` *(quiz)*, supporting all of its functionalities, but going a bit further.
 `Grupo` *(group)* represents a group of questions, and can be characterized by a `Tema tema` *(theme)*, type and `Dificuldade dificuldade` *(difficulty)*. These attributes are defined when questions are added, through the use of the function `adicionarquestoes` *(add questions)*. An example of the usage of this function is as follows:
 ```
 g2 % adicionarquestoes(q1, tema = [Tema_C], dificuldade = FACIL, tipo = "VerdadeiroFalso").
 ```
-Furthermore, the programmer can also define the minimum  number of questions that the user must complete before submitting the quiz by defining `minperguntasaresponder` *(minimum questions to answer)*, as well as the number of questions to present in the quiz `nrperguntasaapresentar` *(number of questions to present)*.
+When using this function, only the questions that are matched with the arguments are imported.
+Furthermore, the programmer can also define the minimum  number of questions that the user must complete before submitting the quiz, by defining `minperguntasaresponder` *(minimum questions to answer)*, as well as the number of questions to present in the quiz `nrperguntasaapresentar` *(number of questions to present)*.
 
 <p align="right">(<a href="#quiz-top">back to top of the <em>Quiz language</em> section</a>)</p>
 
 
 ##### Question: `Questao`
-The `Questao` *(question)* is essential, since it represents a question. `pergunta` *(question)* stores the text of the question, while `Tema tema` *(theme)* defines the theme, `Dificuldade dificuldade` *(difficulty)*  the difficulty and `pontuacao` *(points)* its points. `Lista< Resposta > respostas` *(list of answers)* is a list of possible answers, which is useful for all the question/answer types, with the exception of `LongaTextual` *(long text)* which is covered below. Furthermore, the `tempomaximo` *(maximum time)* can be defined, stating the maxmimum time the user has to answer the question. If this time passes while the user is answering, their answer won't be stored, but the quizz may continue.
-Additionally, there's also `tipo` *(type)*, a `String` useful for the programmer that wants to consult this value, for presentation reasons, for example.
+The `Questao` *(question)* type is essential, since it represents a question. The attribute `pergunta` *(question)* stores the text of the question, while `Tema tema` *(theme)* defines the theme, `Dificuldade dificuldade` *(difficulty)*  the difficulty and `pontuacao` *(points)* its points. `Lista< Resposta > respostas` *(list of answers)* is a list of possible answers, which is useful for all the question/answer types, with the exception of `LongaTextual` *(long answer question)*, which is covered below. Furthermore, the `tempomaximo` *(maximum time)* can be defined, stating the maxmimum time the user has to answer the question. If this time passes while the user is answering, their answer won't be stored, but the quiz may continue.
+Additionally, there's also `tipo` *(type)*, a `String` useful for the programmer that wants to use value for presentation and filtering reasons, for example.
 
 To finish, after a quiz is complete, the `Resposta respostadada` *(given answer)* attribute will have information on the answer that the user chose for that question.
 
-In our language, this type has similarities with abstract classes. No question can be created using this type, and its goal is to make the processing of the quizz easier and intuitive for the programmer. Several types of question can be created, which will be covered next.
+In our language, this type has some similarities with abstract classes. No question can be created using this type, and its goal is to make the processing of the quiz easier and intuitive for the programmer. Several types of question can be created, which are covered below.
 
 - ##### Multiple Choice Question: `Questao:EscolhaMultipla`
   This type describes a multiple choice question, and is to be used with `Resposta:EscolhaMultipla`. From all the choices presented, the user must choose at least one.
 
+  Below is an example of how such a question could be define. Note that the other questions follow very similar patterns.
+  ```
+  # initializing the question
+  mcQuestion as Questao:EscolhaMultipla.
+
+  # defining the question text
+  mcQuestion->pergunta := "How old is Ariel?".
+
+  # defining the difficulty
+  mcQuestion->dificuldade := FACIL.
+
+  # defining the question points
+  mcQuestion->pontuacao := 50.
+
+  # defining the possible answers (covered more in depth below)
+  answers as Lista<Resposta:EscolhaMultipla>.
+  answers := { "10 years", -40 ; "14 years", -20 ; "16 years", 100 }.
+  mcQuestion->respostas := answers.
+
+  # defining a maximum time to answer the question
+  mcQuestion->tempomaximo := 30.
+  ```
+
 - ##### True or False Question: `Questao:VerdadeiroFalso`
-  This specification of the question type describes a "true or false" question, and is to be used with the `Resposta:VerdadeiroFalso` *(answer: true or false)* answer type. When this question is displayed, the user is presented with multiple sentences/entries. The user must then say wether each one is true or false. More info on the answers below.
+  This is type describes a "true or false" question, and is to be used with the `Resposta:VerdadeiroFalso` *(answer: true or false)* answer type. When this question is displayed, the user is presented with multiple sentences/entries. The user must then say wether each one is true or false. More info on the answers below.
 
 - ##### Short Answer Question: `Question:CurtaTextual`
   It represents a question where the user must write their answer to the program. This is to be used with the `Resposta:CurtaTextual` type. The user's answer will then be compared to the answers defined for this question, and if there's a match, it will be graded accordingly.
 
 - ##### Long Answer Question: `Question:LongaTextual`
-  This type represents a question where the user is also asked to input text. However, in this case, their answer won't be compared with pre-defined answers, since it's expected the input for this question to be more complex, and impossible for the program to grade on its own. After the quizz is finished, it is possible to display the answer given in the screen, or save it in a file on the computer, allowing the question to be graded manually.
-  Therefore, when creating it, no answer type should be added.
+  This type represents a question where the user is also asked to input text. However, in this case, their answer won't be compared with pre-defined answers, since it's expected the input for this question to be more complex, and impossible for the program to grade on its own. After the quiz is finished, it is possible to display the answer given in the screen, or to save it in a file on the computer, allowing the question to be graded manually.
+  Therefore, when creating it, no answer should be defined or added.
 
 <p align="right">(<a href="#quiz-top">back to top of the <em>Quiz language</em> section</a>)</p>
 
 ##### Answer: `Resposta`
 
-The `Resposta` *(answer)* represents none other than an answer. Each question has a list of answers that are applicable to it (keeping in mind that the long answer question is indeed a bit different). All answers have information on the points the user would obtain if they chose it or answered correctly - `Real pontuacao` *(points)*, which is shown as `pointsObtainedInAnswer(n)` in the expression above. These can be negative, too, as a way to punish wrong answers!
+The `Resposta` *(answer)* represents none other than an answer. Each question has a list of answers that are applicable to it (with the exception of the long answer question, which is going to be discussed soon). All answers have information on the points the user would obtain if they choose it or answer correctly - `Real pontuacao` *(points)*, which is shown as `pointsObtainedInAnswer(n)` in the expression above. These can be negative, too, as a way to punish wrong answers!
 
-This type is similar to the `Questao` *(question)*, since it also behaves somewhat like an abstract class. Several types of answers exist, and are explained below.
+This type is similar to the `Questao` *(question)*, in the sense that it also behaves like an abstract class. Several types of answers exist, and are explained below.
 
   - ##### Multiple Choice Answer: `Resposta:EscolhaMultipla`
-    This is a basic answer type, which is used with the `Question:EscolhaMultipla` *(multiple choice question)* type. The programmer needs to define the string that will be shown to the user, and also needs the points associated with it as described above.
+    This is the answer type used with the `Question:EscolhaMultipla` *(multiple choice question)* type. The programmer needs to define the string that will be shown to the user, and also needs the points associated with it as described above.
 
     ```
     correctAnswer as Resposta:EscolhaMultipla.
@@ -237,7 +268,7 @@ This type is similar to the `Questao` *(question)*, since it also behaves somewh
     ```
 
   - ##### True or False Answer: `Resposta:VerdadeiroFalso`
-    This is another answer type, which is used with the `Question:VerdadeiroFalso` *(true or false questions)* type. It is a bit different from the previous one, however. Besides the text and points that we described in the previous type, the programmer also needs to inform the `Boolean correcao` *(correction)* and the `Real desconto` *(discount)*. When true or false questions are presented to the user, he will need to evalue the veracity of each one of them. If the user has wrongfuly determined the veracity of one answer, then the points associated with this answer will be the ones stored in `desconto` *(discount)*, instead of those in `pontuacao` *(points)*. 
+    This is another answer type, used with the `Question:VerdadeiroFalso` *(true or false questions)* type. It is a bit different from the previous one, however. Besides the text and points that we described in the previous type, the programmer also needs to inform the `Boolean correcao` *(correction)* and the `Real desconto` *(discount)*. When true or false questions are presented to the user, he will need to evalue the veracity of each one of them. If the user has wrongfuly determined the veracity of one answer, then the points associated with this answer will be the ones stored in `desconto` *(discount)*, instead of those in `pontuacao` *(points)*. 
 
     ```
     tfAnswer as Resposta:VerdadeiroFalso.
@@ -247,7 +278,7 @@ This type is similar to the `Questao` *(question)*, since it also behaves somewh
 
 
   - ##### Short Answer: `Resposta:CurtaTextual`
-    This is the answer type associated with `Questao:CurtaTextual`, and it's fairly similar to `Resposta:EscolhaMultipla`. The user only needs to define the text to which the user answer will be matched, and also the points that are to be awarded.
+    This is the answer type associated with `Questao:CurtaTextual`, and it's fairly similar to `Resposta:EscolhaMultipla`. The user only needs to define the text to which the user input will be matched, and also the points that are to be awarded.
 
     As a cool feature, it is possible to define many at the same time in a list, using the following sintaxe (note that this also works for the other types of answers):
     ```
@@ -256,7 +287,7 @@ This type is similar to the `Questao` *(question)*, since it also behaves somewh
     ```
 
   - ##### Long Answer: `Resposta:LongaTextual`
-    This type is a bit special. It is meant to be created automatically and used only after the quiz is done, in order to store the user's input. There is no way to define it manually.
+    This type is a bit special. It is meant to be created automatically and used only after the quiz is done, in order to store the user's input. It is not possible to define it manually.
 
 <p align="right">(<a href="#quiz-top">back to top of the <em>Quiz language</em> section</a>)</p>
 
@@ -270,10 +301,11 @@ quiz->questoes%baralhar().
 
 It can be initialized and filled using brackets, and even allows for objects to be initalized at the same time, as already shown above. Some other examples:
 ```
+# creating a list of multiple choice answers
 multipleChoiceList as Lista<Resposta:EscolhaMultipla>.
 multipleChoiceList := { "Her name is Ariel.", 60 ; "Her name is Ursula.", -20}. 
 
-
+# creating a list of true or false answers
 trueFalseAnswerList as Lista<Resposta:VerdadeiroFalso>.
 trueFalseAnswerList := { "Her name is Ursula.", false, 60, -30 ; The kingdom's name is Atlantica.", true, 40, -20}.
 ```
@@ -282,7 +314,7 @@ trueFalseAnswerList := { "Her name is Ursula.", false, 60, -30 ; The kingdom's n
 <div id="theme"></div>
 
 ##### Theme: `Tema`
-This is a simpler data type used to define the theme or topic of a question or question group. It is useful for filtering questions and/or results. These are implemented in a hierarchical fashion, and have an intuitive sintax:
+This is a simpler data type used to define the theme/topic of a question or question group. It is useful for filtering questions and/or results. These are implemented in a hierarchical fashion, and have an intuitive sintax:
 ```
 # setting the theme of three questions
 question1->tema := [TECH->PROGRAMMING->PYTHON].
@@ -302,11 +334,13 @@ question1->dificuldade := FACIL.
 <p align="right">(<a href="#quiz-top">back to top of the <em>Quiz language</em> section</a>)</p>
 
 ##### Other basic types
-  The following types are also implemented in this language. Their behaviour is similar to what one might expect.
+  The following types are also implemented in this language. 
   - Boolean: `Boolean`
   - Real Number: `Real`
   - Integer Number: `Inteiro`
   - String: `String`
+
+Their behaviour is similar to what one might expect. In particular, note that the number types support basic arithmetic, while the `String` supports concatenation, besides the comparation types mentioned below.
   
 <p align="right">(<a href="#quiz-top">back to top of the <em>Quiz language</em> section</a>)</p>
 
@@ -316,21 +350,21 @@ The developed language supports multiple functionalities commonly present in gen
 - ##### Variable declaration and initialization
   To declare variables and initialize them, the following sintax is used:
   ```
-  q as Questionario.
-  tx1 as Questao:CurtaTextual. 
+  quiz as Questionario.
+  shortAnsQuestion as Questao:CurtaTextual. 
   ```
 
 - ##### Attribuition of values to variables
   When the objects ar initialized, the attributes will have default values. These can be changed with the following sintax:
   ```
-  tx1->tema := [TEMA_A].
-  tx1->dificuldade := FACIL.
+  shortAnsQuestion->tema := [TEMA_A].
+  shortAnsQuestion->dificuldade := FACIL.
   ```
 
   Some objects - namely, the `Resposta` *(answer)* types - can be initalized with custom values, using the following sintax:
   ```
   shortAnswerList as Lista<Resposta:CurtaTextual>.
-  shortAnswerList := { "Nee", 20 ; "Ja", 30 ; "Ik", 30; "outra", 20 } .
+  shortAnswerList := { "Nee", 20 ; "Ja", 30 ; "Ik", 30; "outra", 20 }.
   ```
   In this case, each element that is to be inserted in the list is separated with a `;`.
 
@@ -348,7 +382,7 @@ The developed language supports multiple functionalities commonly present in gen
   | `ou`   | logic or _(to be used with expressions)_  |
 
 - ##### Desicion structures
-  The language supports decision structures such as `if`, `else if` and `else`, but with different names (who would say). We opted for the words `se` *(if)*, `ouse` *(else if)* and `senao` *(if not)*. Besides, the code blocks need to be delimited by `inicio` *(begining)* and `fim` *(fim)*.
+  The language supports decision structures such as `if`, `else if` and `else`, but with different names (who would say). We opted for the words `se` *(if)*, `ouse` *(else if)* and `senao` *(if not/else)*. Besides, the code blocks need to be delimited by `inicio` *(begining)* and `fim` *(fim)*.
 
   ```
   se (g1->pontuacao < p) # p: int variable previously defined
@@ -362,7 +396,7 @@ The developed language supports multiple functionalities commonly present in gen
   ```
 
 - ##### Cicles
-  This language supports cycles, more specifically for-each cycles. The word `para` *(for)* is used, and the delimiters are also `inicio` *(begining)* and `fim` *(end)*.
+  Cycles are also supported, more specifically for-each cycles. The word `para` *(for)* is used, and the delimiters are also `inicio` *(begining)* and `fim` *(end)*.
   ```
   para (q as Questao em q1->questoes)
   inicio
@@ -374,28 +408,33 @@ The developed language supports multiple functionalities commonly present in gen
     fim
   fim
   ```
+  There's also the `parar` *(stop)* instruction, commonly known as `break` in most well-known languages, as well as a `continuar` *(continue)* which is analogous to a `continue`.
+
+- ##### Other features/remarks
+  - The whitespaces are not syntactically significant
+  - Comments are implemented: every comment starts with a `#`, which makes the remaining line in front of it a comment
 
 <p align="right">(<a href="#quiz-top">back to top of the <em>Quiz language</em> section</a>)</p>
 
 
 #### 🏵 Built-in functions
-The developed language has some built-in functions that aren't associated with any types. These are as follows.
+The developed language has some built-in functions that aren't associated with any types. These are presented below.
 
 - ##### Display menu: `apresentarMenu`
-  This is the function used to start the quizz. A `Questionario` *(quizz)* (or `Grupo` *(group)*) needs to be passed in the arguments. Additionally, the user can also provide a number which represent the number of seconds that the user has to finish the quizz. After this time has passsed, the user won't be able to answer or save any unanswered questions.
+  This is the function used to start the quiz. Either a `Questionario` *(quiz)* or `Grupo` *(group)* needs to be passed as an argument. Additionally, the user can also provide a number representing the number of seconds that the user has to finish the quiz. After this time has passsed, the user won't be able to answer or save any remaining unanswered questions.
 
   ```
-  # starts the quizz with the info on techGroup, with time limit of 300 seconds
+  # starts the quiz with the info on techGroup, with time limit of 300 seconds
   apresentarMenu(techGroup, 300).
   ```
 
 - ##### Display: `apresentar`
-  Used to print something in the console.
+  Used to print something in the screen.
   ```
   apresentar(“Hello world").
   ```
 
-- #### To string: `str`
+- ##### To string: `str`
   Used to convert number values to `String`.
   ```
   apresentar(The pontuation is: ” & str(techGroup->pontuacao)).
@@ -405,12 +444,12 @@ The developed language has some built-in functions that aren't associated with a
 
 
 ### 📘 Database Language
-It was with the goal of facilitating the storage of questions that this secondary language was created. It allows the quizz creator to write and save questions that are directly interepreted by the primary language. When creating the quiz, we can add questions dynamically in the code, or import them from a file where this language should be employed.
+It was with the goal of facilitating the storage of questions that this secondary language was created. It allows the quiz creator to write and save questions that are directly interepreted by the primary language. When creating the quiz, we can add questions dynamically in the code, or import them from a file where this language should be employed.
 
 #### 🌼 Sintax overview
 - ##### Questions
 
-  The code block below shows a schema of how the questions are defined. All question types follow the same schema, except the `LongaTextual` *(long answer question)*, which does not accept any answers.
+  The code block below shows the schema of how a question is defined. All question types follow the same schema, except the `LongaTextual` *(long answer question)*, which does not accept any answers.
 
   ```
   # for most question types
@@ -432,7 +471,7 @@ It was with the goal of facilitating the storage of questions that this secondar
   | difficulty             | `facil` *(easy)*<br /> `medio` *(medium)* <br /> `dificil` *(difficult)* |
   | points             | any integer value |
   | theme             | `[ THEME1 ( -> SUBTHEME1 -> ... ) ]` <br /> - this follows an hierarchichal approach, as described <a href="#theme">here</a> <br />-  the `THEME1` and `SUBTHEME1` in the schema represent any alphanumerical string |
-  | question text   | any string  |
+  | question text   | any string delimited with double quotes |
 
 
 
@@ -450,7 +489,7 @@ It was with the goal of facilitating the storage of questions that this secondar
 
   | annotation       | possible values                               |
   | ---------------- | --------------------------------------------- |
-  | answer text | any string |
+  | answer text | any string delimited with double quotes |
   | points | any integer value |
   | correction | `true` <br /> `false` |
   | points awarded if right | any integer value |
@@ -461,14 +500,35 @@ It was with the goal of facilitating the storage of questions that this secondar
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <h2 id="whats_to_improve">What's to improve</h2>
-A lot.
+
+There is... a lot... that could be improved.
+
+At the time, we wanted to make something different, that's why we decided that our creation would be based in Portuguese. However, I can't really explain why our sintax is a terrible mix of both Portuguese and English. There's clearly room for improvement in this regard. 
+
+There's also a clear lack of functionality in some very basic things. For example, it is both impossible to add or remove elements to a `Lista` *(list)*, without having to define all its elements all over again. As another example, the `for-loop` is extremely specific, since is only supports iterating through a `Lista` *(lista)*, and should be extended. Yet another thing that could be greatly improved is the front-end, even though it isn't covered with much detail in this document. Currently is consits of a simple text prompt in the terminal, which is by far not the best approach for a quiz application.
+
+Furthermore, the types that are implemented could be better designed. In the original design we did not consider how different the answer types would be, for example. This led to our dubious relationship schema and functionalities with "special cases" that shouldn't exist. A refactor to the existing types, and possibe the addition of more, would be necessary for a more robust and usable language.
+
+To finish, just a small annoying detail, there's no reason why the <a href="https://www.java.com/">Java</a> code isn't organized in folders/packages. It definitely should be (and I'm to blame here)!
+
+
+#### 🔙💭 Looking back & other considerations
+Even though it's easy to critique our own work, the truth is that every one of us is quite proud of what we achieved in the short time we had to dedicate to this project. For me, it probably *the* most challenging academic project I had until now. At the same time, however it allowed for creativity and freedom for exploring different things, which made it one of the most interesting as well! Overall, I simply enjoy this subject and project.
+
+As a different note, please keep in mind that the report in the repository (which is in Portuguese) has way less information than this document (which is a shame, since it was graded instead of this document).
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+
 <!-- GETTING STARTED -->
 <h2 id="try_it_on_your_machine">Try it on your machine</h2>
-Yet to be ~ <strong>ଘ(੭*ˊᵕˋ)੭* ̀ˋ</strong> ~ written!
+
+Yet to be &nbsp; <strong>ଘ(੭*ˊᵕˋ)੭* ̀ˋ  ̀   ˋ  ̀ˋ   ̀ˋ</strong> &nbsp;  written!
+
+Unfortunatelly, this will probably take a while. In the meanwhile, you can look at the examples in
+- <a href="https://github.com/immarianaas/c-quiz-language/tree/main/projeto/exemplos">`projeto/exemplos`</a> (quiz code examples)
+- <a href="https://github.com/immarianaas/c-quiz-language/tree/main/projeto/exemplos_base_dados">`projeto/exemplos_base_dados`</a> (database code examples)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -506,14 +566,30 @@ Distributed under the MIT License. See `LICENSE` for more information.
 [license-url]: https://github.com/immarianaas/c-quiz-language/blob/master/LICENSE
 
 
-[mariana-github-shield1]: https://img.shields.io/badge/--black.svg?style=for-the-badge&logo=github&colorB=555
-[mariana-linkedin-shield1]: https://img.shields.io/badge/--black.svg?style=for-the-badge&logo=linkedin&colorB=0e76a8
 
+
+
+<!-- group member list -->
+
+[linkedin-shield]: https://img.shields.io/badge/--black.svg?style=for-the-badge&logo=linkedin&colorB=0e76a8
+
+<!-- mariana -->
 [mariana-github-shield]: https://img.shields.io/badge/-Mariana-black.svg?style=for-the-badge&logo=github&colorB=555
-[mariana-linkedin-shield]: https://img.shields.io/badge/-Mariana-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 
 [mariana-github-url]: https://github.com/immarianaas
 [mariana-linkedin-url]: https://www.linkedin.com/in/immarianaas
+
+<!-- diogo -->
+[diogo-github-shield]: https://img.shields.io/badge/-Diogo-black.svg?style=for-the-badge&logo=github&colorB=555
+
+[diogo-github-url]: https://github.com/DiogoCarvalhoo
+[diogo-linkedin-url]: https://www.linkedin.com/in/diogo-carvalho-43bb33209/
+
+<!-- rafael -->
+[rafael-github-shield]: https://img.shields.io/badge/-Rafael-black.svg?style=for-the-badge&logo=github&colorB=555
+
+[rafael-github-url]: https://www.linkedin.com/in/rafael-baptista-51319a195/
+[rafael-linkedin-url]: https://www.linkedin.com/in/rafael-baptista-51319a195/
 
 
 
@@ -531,7 +607,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 
 
-[antlr-shield]: https://img.shields.io/badge/ANTLR-EF3225?style=for-the-badge
+[antlr-shield]: https://img.shields.io/badge/ANTLR4-EF3225?style=for-the-badge
 [antlr-url]: https://www.antlr.org/
 
 [java-shield]: https://img.shields.io/badge/Java-007CBD?style=for-the-badge
