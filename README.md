@@ -70,11 +70,24 @@ ordem:
 <details>
   <summary>Table of Contents</summary>
   <ol>
-    <li><a href="#introduction">Introduction</a></li>
-    <li><a href="#whats_done">What's done</a></li>
+    <li><a href="#introduction">Introduction</a>
+      <ol>
+        <li><a href="#goals">Goals</a>
+      </ol>
+    </li>
+    <li><a href="#whats_done">What's done</a>
+      <ol>
+        <li><a href="#idea">Idea</a>
+        <li><a href="#built_with">Built with</a>
+        <li><a href="#quiz_language">Quiz language</a>
+        <li><a href="#database_language">Database language</a>
+      </ol>
+    </li>
     <li><a href="#whats_to_improve">What's to improve</a></li>
+      <ol>
+        <li><a href="#looking_back">Looking back & other considerations</a>
+      </ol>
     <li><a href="#try_it_on_your_machine">Try it on your machine</a></li>
-    <li><a href="#files_overview">Files Overview</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
@@ -88,7 +101,7 @@ ordem:
 <h2 id="introduction">Introduction</h2>
 A <strong>transpiler</strong> can be seen as a <i>translator</i> of the source language to a destination language. During this process, not only the syntactic validity of the program should be checked, but also its semantic correctness.
 
-### 🏁 Goals
+<h3 id="goals">🏁 Goals</h3>
 The goal of this work involved developing two languages: one for the transpiler - which is the main language of the project -, and the other to read structured information.
 
 This process included all phases of construction of programming languages:
@@ -101,12 +114,12 @@ This process included all phases of construction of programming languages:
 - Concretization of the transpiler as a whole
 
 
-<strong>Note</strong>: the information presented on both <strong>Information</strong> and <strong>Goals</strong> are described with more detail in the project guide, which is in Portuguese.
+<strong>Note</strong>: the information presented on both <strong>Information</strong> and <strong>Goals</strong> are described with more detail in the <a href="https://github.com/immarianaas/c-quiz-language/blob/main/trabalho.pdf">project guide</a>, which is in Portuguese.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <h2 id="whats_done">What's done</h2>
 
-### 💡 Idea
+<h3 id="idea">💡 Idea</h3>
 The programming language we designed and developed for this project is oriented to creating and manipulating interactive quizzes.
 
 The language supports 4 different types of questions: 
@@ -121,7 +134,7 @@ The questions can be defined along the rest of the code for the quiz, or separat
 
 When a quiz is programmed and executed, the program will present it to the user. Then it will patiently wait for the user's input, storing it. The programmer can also choose to display the results report or answers given in the screen, or save them in a text file to be reviewed later.
 
-### 🏗 Built with
+<h3 id="built_with">🏗 Built with</h3>
 
 [![ANTLR][antlr-shield]][antlr-url] [![Java][java-shield]][java-url]
 
@@ -129,7 +142,7 @@ When a quiz is programmed and executed, the program will present it to the user.
 
 <div id="quiz-top"></div>
 
-### 📗 Quiz language
+<h3 id="quiz_language">📗 Quiz language</h3>
 This is the main language of the project, which is somewhat similar to a general programming language. It is responsible for the definition, creation and presentation of the quiz itself.
 
 <details>
@@ -180,7 +193,7 @@ After the user has completed the quiz, the variable `duracao` *(duration)* will 
 
 It has two functions associated with it:
 - `adicionarquestao` *(add question)*, which accepts as argument a `Questao` *(question)*, and is used to add a question to it
-- `importar` *(import)*, which is accepts a `String` with a path to a file written according to the <strong>SECOND LANGAUGE TO DO ADD LINK</strong>. All the questions there will then be imported to this quiz
+- `importar` *(import)*, which is accepts a `String` with a path to a file written according to the <a href="#database_language"> second, database language</a>. All the questions there will then be imported to this quiz
 
 The scoring of the test follows the following formulas:
 
@@ -443,7 +456,7 @@ The developed language has some built-in functions that aren't associated with a
 <p align="right">(<a href="#quiz-top">back to top of the <em>Quiz language</em> section</a>)</p>
 
 
-### 📘 Database Language
+<h3 id="database_language">📘 Database language</h3>
 It was with the goal of facilitating the storage of questions that this secondary language was created. It allows the quiz creator to write and save questions that are directly interepreted by the primary language. When creating the quiz, we can add questions dynamically in the code, or import them from a file where this language should be employed.
 
 #### 🌼 Sintax overview
@@ -512,7 +525,7 @@ Furthermore, the types that are implemented could be better designed. In the ori
 To finish, just a small annoying detail, there's no reason why the <a href="https://www.java.com/">Java</a> code isn't organized in folders/packages. It definitely should be (and I'm to blame here)!
 
 
-#### 🔙💭 Looking back & other considerations
+<h4 id="looking_back"> 🔙💭 Looking back & other considerations</h4>
 Even though it's easy to critique our own work, the truth is that every one of us is quite proud of what we achieved in the short time we had to dedicate to this project. For me, it probably *the* most challenging academic project I had until now. At the same time, however it allowed for creativity and freedom for exploring different things, which made it one of the most interesting as well! Overall, I simply enjoy this subject and project.
 
 As a different note, please keep in mind that the report in the repository (which is in Portuguese) has way less information than this document (which is a shame, since it was graded instead of this document).
