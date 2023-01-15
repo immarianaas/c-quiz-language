@@ -8,7 +8,7 @@
 
 
 
-[![LinkedIn][linkedin-shield]][diogo-linkedin-url][![Contributors][diogo-github-shield]][diogo-github-url] &nbsp;&nbsp;  [![LinkedIn][linkedin-shield]][luis-linkedin-url][![Contributors][luis-github-shield]][luis-github-url] &nbsp;&nbsp;  [![LinkedIn][linkedin-shield]][maria-linkedin-url][![Contributors][maria-github-shield]][maria-github-url] &nbsp;&nbsp;  [![LinkedIn][linkedin-shield]][mariana-linkedin-url][![Contributors][mariana-github-shield]][mariana-github-url] &nbsp;&nbsp;  [![LinkedIn][linkedin-shield]][rafael-linkedin-url][![Contributors][rafael-github-shield]][mariana-github-url] 
+[![LinkedIn][linkedin-shield]][diogo-linkedin-url][![Contributors][diogo-github-shield]][diogo-github-url] &nbsp;&nbsp;  [![LinkedIn][linkedin-shield]][luis-linkedin-url][![Contributors][luis-github-shield]][luis-github-url] &nbsp;&nbsp;  [![LinkedIn][linkedin-shield]][maria-linkedin-url][![Contributors][maria-github-shield]][maria-github-url] &nbsp;&nbsp;  [![LinkedIn][linkedin-shield]][mariana-linkedin-url][![Contributors][mariana-github-shield]][mariana-github-url] &nbsp;&nbsp;  [![LinkedIn][linkedin-shield]][rafael-linkedin-url][![Contributors][rafael-github-shield]][rafael-github-url] 
 
 </div>
 
@@ -666,7 +666,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- rafael -->
 [rafael-github-shield]: https://img.shields.io/badge/-Rafael-black.svg?style=for-the-badge&logo=github&colorB=555
 
-[rafael-github-url]: https://www.linkedin.com/in/rafael-baptista-51319a195/
+[rafael-github-url]: https://github.com/rafaelbaptista13
 [rafael-linkedin-url]: https://www.linkedin.com/in/rafael-baptista-51319a195/
 
 <!-- maria -->
