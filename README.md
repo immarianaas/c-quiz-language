@@ -593,7 +593,7 @@ To finish, just a small annoying detail, there's no reason why the <a href="http
 
 Even though it's easy to critique our own work, the truth is that every one of us is quite proud of what we achieved in the short time we had to dedicate to this project. For me, it is probably *the* most challenging academic project I had until now. At the same time, however it allowed for creativity and freedom for exploring different things, which made it one of the most interesting as well! Overall, I simply enjoyed this subject and project.
 
-As a different note, please keep in mind that the report in the repository (which is in Portuguese) has way less information than this document (which is a shame, since it was graded, unlike this one).
+As a different note, please keep in mind that the <a href="https://github.com/immarianaas/c-quiz-language/blob/main/Relatorio_grupo11_C.pdf">report in the repository</a> (which is in Portuguese) has way less information than this document (which is a shame, since it was graded, unlike this one).
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
